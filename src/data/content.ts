@@ -1,8 +1,9 @@
 import { ServiceItem, NicheItem, PlanItem, TestimonialItem, FaqItem } from '../types';
 
+// Dados canônicos e oficiais da Agência 053 Digital (persistidos no deploy)
 export const BRAND_PHONE = '5553981065074'; // DDD 053 Pelotas / RS
 export const BRAND_PHONE_DISPLAY = '(53) 98106-5074';
-export const BRAND_EMAIL = 'contato@agencia053digital.com.br';
+export const BRAND_EMAIL = 'agencia053.digital@gmail.com'; // E-mail oficial exibido no rodapé e canais de contato
 
 export const SERVICES_DATA: ServiceItem[] = [
   {
@@ -147,7 +148,7 @@ export const PLANS_DATA: PlanItem[] = [
     name: 'Plano Start Local',
     tagline: 'Ideal para negócios que querem dar os primeiros passos com anúncios e ter retorno rápido.',
     monthlyInvestment: 'R$ 997',
-    suggestedAdBudget: 'R$ 600 a R$ 1.500 / mês',
+    suggestedAdBudget: 'R$ 1.000,00 a R$ 1.500 / mês',
     features: [
       'Gestão profissional de Meta Ads (Instagram e Facebook)',
       'Otimização básica do Google Meu Negócio',

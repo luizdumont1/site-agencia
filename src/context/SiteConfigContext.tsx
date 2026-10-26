@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { SiteConfig } from '../types/config';
 import { DEFAULT_SITE_CONFIG } from '../data/defaultConfig';
 
-const STORAGE_KEY = 'agencia_053_site_config_v5';
+const STORAGE_KEY = 'agencia_053_site_config_v6';
 
 interface SiteConfigContextType {
   config: SiteConfig;
@@ -22,8 +22,9 @@ export const SiteConfigProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     try {
       let saved = localStorage.getItem(STORAGE_KEY);
       if (!saved) {
-        // Check older versions v4, v3, v2
+        // Check older versions v5, v4, v3, v2
         const prevSaved =
+          localStorage.getItem('agencia_053_site_config_v5') ||
           localStorage.getItem('agencia_053_site_config_v4') ||
           localStorage.getItem('agencia_053_site_config_v3') ||
           localStorage.getItem('agencia_053_site_config_v2');
@@ -33,8 +34,9 @@ export const SiteConfigProvider: React.FC<{ children: React.ReactNode }> = ({ ch
             const migrated: SiteConfig = {
               ...DEFAULT_SITE_CONFIG,
               ...prevParsed,
-              whatsappNumber: '5553981065074',
-              whatsappDisplay: '(53) 98106-5074',
+              email: DEFAULT_SITE_CONFIG.email,
+              whatsappNumber: DEFAULT_SITE_CONFIG.whatsappNumber,
+              whatsappDisplay: DEFAULT_SITE_CONFIG.whatsappDisplay,
               plans: DEFAULT_SITE_CONFIG.plans,
             };
             localStorage.setItem(STORAGE_KEY, JSON.stringify(migrated));
@@ -50,16 +52,12 @@ export const SiteConfigProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         const hasOldPlans = parsed.plans?.some((p: any) => p.id === 'start-local' || p.name === 'Plano Start Local');
         const activePlans = hasOldPlans || !parsed.plans?.length ? DEFAULT_SITE_CONFIG.plans : parsed.plans;
 
-        // Ensure current requested phone number is always applied if old demo number was present
-        const isOldPhone = !parsed.whatsappNumber || parsed.whatsappNumber.includes('999990530');
-        const activePhone = isOldPhone ? '5553981065074' : parsed.whatsappNumber;
-        const activePhoneDisplay = isOldPhone ? '(53) 98106-5074' : (parsed.whatsappDisplay || '(53) 98106-5074');
-
         return {
           ...DEFAULT_SITE_CONFIG,
           ...parsed,
-          whatsappNumber: activePhone,
-          whatsappDisplay: activePhoneDisplay,
+          email: DEFAULT_SITE_CONFIG.email,
+          whatsappNumber: DEFAULT_SITE_CONFIG.whatsappNumber,
+          whatsappDisplay: DEFAULT_SITE_CONFIG.whatsappDisplay,
           services: parsed.services?.length ? parsed.services : DEFAULT_SITE_CONFIG.services,
           plans: activePlans,
         };

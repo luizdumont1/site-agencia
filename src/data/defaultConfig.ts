@@ -1,10 +1,11 @@
 import { SiteConfig } from '../types/config';
+import { BRAND_PHONE, BRAND_PHONE_DISPLAY, BRAND_EMAIL } from './content';
 
 export const DEFAULT_SITE_CONFIG: SiteConfig = {
   // 1. WhatsApp & Contatos
-  whatsappNumber: '5553981065074',
-  whatsappDisplay: '(53) 98106-5074',
-  email: 'contato@agencia053digital.com.br',
+  whatsappNumber: BRAND_PHONE,
+  whatsappDisplay: BRAND_PHONE_DISPLAY,
+  email: BRAND_EMAIL,
   defaultWhatsAppMessage: 'Olá, Agência 053! Vim pelo site e gostaria de saber como o tráfego pago pode acelerar o faturamento da minha empresa.',
 
   // 2. Logo & Identidade

@@ -2,6 +2,7 @@ import React from 'react';
 import { Phone, Mail, MapPin, Instagram, Facebook, Linkedin, MessageCircle, ArrowUp } from 'lucide-react';
 import { Logo } from './Logo';
 import { useSiteConfig } from '../context/SiteConfigContext';
+import { BRAND_EMAIL } from '../data/content';
 
 export const Footer: React.FC = () => {
   const { config, getWhatsAppLink } = useSiteConfig();
@@ -82,10 +83,10 @@ export const Footer: React.FC = () => {
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#E50914] shrink-0" />
                 <a
-                  href={`mailto:${config.email}`}
+                  href={`mailto:${config.email || BRAND_EMAIL}`}
                   className="hover:text-white transition-colors"
                 >
-                  {config.email}
+                  {config.email || BRAND_EMAIL}
                 </a>
               </li>
               <li className="flex items-start gap-2.5">

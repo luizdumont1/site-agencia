@@ -26,7 +26,7 @@ export interface SiteConfig {
   // 1. WhatsApp & Geral
   whatsappNumber: string; // ex: 5553981065074
   whatsappDisplay: string; // ex: (53) 98106-5074
-  email: string; // ex: contato@agencia053digital.com.br
+  email: string; // ex: agencia053.digital@gmail.com
   defaultWhatsAppMessage: string;
 
   // 2. Logo & Identidade
